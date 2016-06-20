@@ -80,7 +80,7 @@ class ComputerService @Inject() (dbapi: DBApi, companyService: CompanyService) {
           select * from computer
           left join company on computer.company_id = company.id
           where computer.name like {filter}
-          order by {orderBy}
+          order by computer.id
           limit {pageSize} offset {offset}
         """
       ).on(
@@ -140,8 +140,11 @@ class ComputerService @Inject() (dbapi: DBApi, companyService: CompanyService) {
       SQL(
         """
           insert into computer values (
-            (1000),
-            {name}, {introduced}, {discontinued}, {company_id}
+            0,
+            {name},
+            {introduced},
+            {discontinued},
+            {company_id}
           )
         """
       ).on(

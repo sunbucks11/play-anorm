@@ -49,6 +49,7 @@
         <table class="computers zebra-striped">
             <thead>
                 <tr>
+                    @header(1, "Id")
                     @header(2, "Computer name")
                     @header(3, "Introduced")
                     @header(4, "Discontinued")
@@ -60,6 +61,7 @@
                 @computers.map { 
                     case (computer, company) => {
                         <tr>
+                            <td>@computer.id</td>
                             <td><a href="@routes.HomeController.edit(computer.id.get)">@computer.name</a></td>
                             <td>
                                 @computer.introduced.map(_.format("dd MMM yyyy")).getOrElse { <em>-</em> }

@@ -11,25 +11,27 @@ DROP TABLE if exists computer;
 
 
 create table company (
-  id                        bigint not null,
+  id                        bigint not null AUTO_INCREMENT,
   name                      varchar(255) not null,
   constraint pk_company primary key (id))
 ;
 
 create table computer (
-  id                        bigint not null ,
+#-- id                        bigint not null UNIQUE,
+  id                        MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
   name                      varchar(255) not null,
   introduced                datetime,
   discontinued              datetime,
   company_id                bigint,
   constraint pk_computer primary key (id))
+  ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 ;
 
-create sequence company_seq start with 1000;
+#--create sequence company_seq start with 1000;
+#--create sequence computer_seq start with 1000;
 
-create sequence computer_seq start with 1000;
 
-alter table computer add constraint fk_computer_company_1 foreign key (company_id) references company (id) on delete restrict on update restrict;
+
 create index ix_computer_company_1 on computer (company_id);
 
 
